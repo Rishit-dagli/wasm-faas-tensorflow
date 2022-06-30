@@ -1,0 +1,3 @@
+[submodule "wasmedge-quickjs"]
+	path = wasmedge-quickjs
+	url = https://github.com/second-state/wasmedge-quickjs
