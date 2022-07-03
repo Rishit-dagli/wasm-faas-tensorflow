@@ -52,3 +52,40 @@ We can AOT compile our Rust code to machine native code, and then use WasmEdge s
 wasmedgec-tensorflow target/wasm32-wasi/release/classify.wasm classify.so
 wasmedge-tensorflow-lite classify.so < grace_hopper.jpg
 ```
+
+## Demo 2: Deploy as a FAAS
+
+### Prerequisite:
+
+- Install Rust with `rustup`
+- Have GCC installed
+- Git and cURL
+- Vercel CLI
+
+### Steps:
+
+1. Install the `wasm32-wasi` target
+
+```sh
+rustup target add wasm32-wasi
+```
+
+2. Build the Rust program to WebAssembly bytecode
+
+```sh
+cd faas
+cd api/functions/image-classification/
+cargo build --release --target wasm32-wasi
+```
+
+3. Prepare the build artifacts for deployment
+
+```sh
+cp target/wasm32-wasi/release/classify.wasm ../../
+```
+
+4.  Deploy the function
+
+```sh
+vercel deploy
+```
