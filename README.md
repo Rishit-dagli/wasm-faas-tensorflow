@@ -31,9 +31,24 @@ cargo build --target wasm32-wasi --release --features=tensorflow
 cd ..
 ```
 
-4. Run locally
+4. Run JS Examples locally
 
 ```sh
 cd js_food
 wasmedge-tensorflow-lite --dir .:. wasmedge_quickjs.wasm main.js
+cd ..
+```
+
+5. Run Rust examples locally
+
+```sh
+cd rust_mobilenet
+cargo build --target wasm32-wasi --release
+```
+
+We can AOT compile our Rust code to machine native code, and then use WasmEdge sandbox to run the native code.
+
+```sh
+wasmedgec-tensorflow target/wasm32-wasi/release/classify.wasm classify.so
+wasmedge-tensorflow-lite classify.so < grace_hopper.jpg
 ```
