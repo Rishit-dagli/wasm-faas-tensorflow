@@ -1,5 +1,10 @@
 # WebAssembly based AI as a Service with Kubernetes
 
+## Benchmarks
+
+| WasmEdge | TensorFlow Python
+| 208.703295ms | 
+
 ## Demo 1: Run locally with WasmEdge
 
 ### Prerequisite:
@@ -87,5 +92,14 @@ cp target/wasm32-wasi/release/classify.wasm ../../
 4.  Deploy the function
 
 ```sh
+vercel build
 vercel deploy
+```
+
+## Demo 3
+
+Build container
+
+```sh
+sudo buildah build --annotation "module.wasm.image/variant=compat" -t classify .
 ```

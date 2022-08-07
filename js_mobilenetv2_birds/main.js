@@ -2,7 +2,7 @@ import {Image} from 'image';
 import * as std from 'std';
 import {TensorflowLiteSession} from 'tensorflow_lite';
 
-let img = new Image('food.jpg');
+let img = new Image('haemorhous_cassinii.jpg');
 let img_rgb = img.to_rgb().resize(192, 192);
 let rgb_pix = img_rgb.pixels();
 
@@ -30,5 +30,4 @@ label_file.close();
 
 print('label:');
 print(label);
-print('confidence:');
-print(max / 255);
+
